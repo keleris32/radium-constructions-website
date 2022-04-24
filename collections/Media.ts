@@ -1,23 +1,23 @@
 import { CollectionConfig } from 'payload/types';
 
-export type MediaType = {
-  filename: string
-  width: number
-  height: number
-  alt: string
+export type Type = {
+  filename: string;
+  // width: number
+  // height: number
+  alt: string;
   sizes: {
     card?: {
-      filename: string
-      width: number
-      height: number
-    }
+      filename: string;
+      width: number;
+      height: number;
+    };
     feature?: {
-      filename: string
-      width: number
-      height: number
-    }
-  }
-}
+      filename: string;
+      width: number;
+      height: number;
+    };
+  };
+};
 
 const Media: CollectionConfig = {
   slug: 'media',
