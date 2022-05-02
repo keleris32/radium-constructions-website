@@ -1,17 +1,17 @@
-import { CallToAction, Component as cta } from './CallToAction';
+// import { CallToAction, Component as cta } from './CallToAction';
 import { Content, Component as content } from './Content';
 import { Image, Component as image } from './Image';
-import { Spacer } from './Spacer';
+// import { Spacer } from './Spacer';
 
 export const collections = {
-  CallToAction,
+  // CallToAction,
   Content,
   Image,
-  Spacer,
+  // Spacer,
 };
 
 export const components = {
-  cta,
+  // cta,
   content,
   image,
 };
