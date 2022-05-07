@@ -1,6 +1,7 @@
 "@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Catamaran:wght@200;300;400;500;600;700&display=swap');";
 
 import { base, htmlFontSize } from './base';
+import queries from './queries';
 
 const heading = {
   fontWeight: 'bold',
@@ -45,4 +46,13 @@ export const body = {
   ...heading,
   fontSize: htmlFontSize,
   lineHeight: base(1.5),
+};
+
+export const largeBody = {
+  fontSize: 22,
+  lineHeight: base(2.25),
+  margin: `${base(0.5)} 0`,
+  [queries.m]: {
+    lineHeight: base(1.86),
+  },
 };
