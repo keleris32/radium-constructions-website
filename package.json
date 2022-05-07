@@ -23,6 +23,7 @@
     "@faceless-ui/css-grid": "^1.0.9",
     "@faceless-ui/modal": "^1.1.8",
     "@faceless-ui/window-info": "^2.0.3",
+    "color": "^4.2.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jss-global": "^3.0.0",
