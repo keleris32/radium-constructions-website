@@ -1,7 +1,7 @@
 import { GlobalConfig } from 'payload/types';
 
 export type Type = {
-  links: {
+  link: {
     label: string;
     url: string;
   }[];

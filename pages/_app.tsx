@@ -2,10 +2,10 @@
 import React, { useEffect } from 'react';
 import App from 'next/app';
 import { WindowInfoProvider } from '@faceless-ui/window-info';
-import { ModalProvider } from '@faceless-ui/modal';
+import { ModalContainer, ModalProvider } from '@faceless-ui/modal';
 import { GridProvider } from '@faceless-ui/css-grid';
 import useStyles from '../css/app';
-import Header from '../components/Layout/Header';
+import Header from '../components/layout/Header';
 import zIndex from '../css/zIndex';
 import breakpoints from '../css/breakpoints';
 import { base } from '../css/base';
@@ -36,7 +36,11 @@ const MyApp = (appProps: AppProps): React.ReactElement => {
 
   return (
     <WindowInfoProvider breakpoints={breakpoints}>
-      <ModalProvider zIndex={zIndex.modal}>
+      <ModalProvider
+        zIndex={zIndex.modal}
+        classPrefix="payload"
+        transTime={400}
+      >
         <GridProvider
           rowGap={{
             s: base(2),
@@ -69,6 +73,7 @@ const MyApp = (appProps: AppProps): React.ReactElement => {
             />
           </div>
         </GridProvider>
+        <ModalContainer />
       </ModalProvider>
     </WindowInfoProvider>
   );
@@ -78,14 +83,14 @@ MyApp.getInitialProps = async (appContext) => {
   const appProps = await App.getInitialProps(appContext);
 
   const [megaMenu, footer, socialMedia] = await Promise.all([
-    fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/app/globals/mega-menu`).then(
+    fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/globals/mega-menu`).then(
       (res) => res.json()
     ),
-    fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/app/globals/footer`).then(
+    fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/globals/footer`).then(
       (res) => res.json()
     ),
     fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/app/globals/social-media`
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/api/globals/social-media`
     ).then((res) => res.json()),
   ]);
 

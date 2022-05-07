@@ -1,16 +1,16 @@
-/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable react/jsx-max-props-per-line */
 import React from 'react';
-import payload from 'payload';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { Cell, Grid } from '@faceless-ui/css-grid';
 import getConfig from 'next/config';
 import { Type as PageType } from '../collections/Page';
 import NotFound from '../components/NotFound';
 import Head from '../components/Head';
-// import classes from '../css/page.module.css';
 import RenderBlocks from '../components/RenderBlocks';
-import GridContainer from '../components/Layout/GridContainer';
-import Template from '../components/Layout/Template';
+import GridContainer from '../components/layout/GridContainer';
+import Template from '../components/layout/Template';
+import { Type as FooterType } from '../globals/Footer';
+import { Type as SocialMediaType } from '../globals/SocialMedia';
 
 const {
   publicRuntimeConfig: { SERVER_URL },
@@ -19,17 +19,19 @@ const {
 export type Props = {
   page?: PageType;
   statusCode: number;
+  footer: FooterType;
+  socialMedia: SocialMediaType;
 };
 
 const Page: React.FC<Props> = (props) => {
-  const { page } = props;
+  const { page, footer, socialMedia } = props;
 
   if (!page) {
     return <NotFound />;
   }
 
   return (
-    <Template>
+    <Template footer={footer} socialMedia={socialMedia}>
       <Head
         title={page.meta?.meta?.title || page.title}
         description={page.meta?.meta?.description}
@@ -91,30 +93,3 @@ export const getStaticPaths: GetStaticPaths = async () => {
     fallback: false,
   };
 };
-
-// export const getServerSideProps: GetServerSideProps = async (ctx) => {
-//   const slug = ctx.params?.slug || 'home';
-
-//   const pageQuery = await payload.find({
-//     collection: 'pages',
-//     where: {
-//       slug: {
-//         equals: slug,
-//       },
-//     },
-//   });
-
-//   if (!pageQuery.docs[0]) {
-//     ctx.res.statusCode = 404;
-
-//     return {
-//       props: {},
-//     };
-//   }
-
-//   return {
-//     props: {
-//       page: pageQuery.docs[0],
-//     },
-//   };
-// };
