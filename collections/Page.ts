@@ -22,6 +22,8 @@ import ImageGrid, { Type as ImageGridType } from '../blocks/ImageGrid';
 import ImageCollage, { Type as ImageCollageType } from '../blocks/ImageCollage';
 import StudySlider, { Type as StudySliderType } from '../blocks/StudySlider';
 import CTAGrid, { Type as CTAGridType } from '../blocks/CTAGrid';
+import RedHeadline from '../components/RichText/leaves/RedHeadline';
+import RedUnderline from '../components/RichText/leaves/RedUnderline';
 
 export type Layout =
   | CallToActionType
@@ -90,6 +92,9 @@ export const Page: CollectionConfig = {
       label: 'Hero Content',
       type: 'richText',
       required: true,
+      admin: {
+        leaves: [RedHeadline, RedUnderline],
+      },
     },
     {
       name: 'heroImage',
