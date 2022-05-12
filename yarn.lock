@@ -1242,10 +1242,20 @@
     qs "^6.9.1"
     react-transition-group "^4.4.2"
 
+"@faceless-ui/mouse-info@^1.2.6":
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/@faceless-ui/mouse-info/-/mouse-info-1.2.6.tgz#29575f2dcec87ba6a141bbdc27a669abe63b9de6"
+  integrity sha512-hWwEufODrsR4AizpO0O1En5NqLQKa8cOqxV8Htfa65eXj9US4j6doI3IGL29+Sul56tGGo+6VMNAXFFXkjQbQg==
+
 "@faceless-ui/scroll-info@^1.2.3":
   version "1.2.5"
   resolved "https://registry.npmjs.org/@faceless-ui/scroll-info/-/scroll-info-1.2.5.tgz#f4eeb99eba405c5f4c0b9bea2651378ca1258c68"
   integrity sha512-mKsH8GO1t/fpe5zoNmpsDENQCiG0my8KQjaJHbBPfRYJNcLA7hyG6aKgnNj1BR4I7pmPjGJLBgR9Kgr0RtG8bg==
+
+"@faceless-ui/scroll-info@^1.2.7":
+  version "1.2.7"
+  resolved "https://registry.yarnpkg.com/@faceless-ui/scroll-info/-/scroll-info-1.2.7.tgz#6d09f59d42627342e208aa540305d7e73bec0f9c"
+  integrity sha512-1Y13tkc13jxo+8K73+9IIpbg1v1P5ECN3qTNq410PX4KYknxMOY8JWxbxeVJYAU2+Zy6aGr0+mJ9P9oglKpDQA==
 
 "@faceless-ui/window-info@^1.2.4":
   version "1.2.9"
@@ -1847,6 +1857,13 @@
   version "6.1.0"
   resolved "https://registry.npmjs.org/@types/html-minifier-terser/-/html-minifier-terser-6.1.0.tgz#4fc33a00c1d0c16987b1a20cf92d20614c55ac35"
   integrity sha512-oh/6byDPnL1zeNXFrDXFLyZjkr1MsBG667IM792caf1L2UPOOMf65NFzjUH/ltyfwjAGfs1rsX1eftK0jC/KIg==
+
+"@types/html-validator@^5.0.3":
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@types/html-validator/-/html-validator-5.0.3.tgz#58d571a159facfefe35b4a380a44075d89f61c85"
+  integrity sha512-QcKpR0cAWhLy7T3J24dwCuviRyS8xj/gVtFxcfZer9lfRgHdSAUFvE02nI/rsgIxSr71Z/2moXVYvWl2fTAzHQ==
+  dependencies:
+    "@types/node" "*"
 
 "@types/is-hotkey@^0.1.1":
   version "0.1.5"
@@ -6055,6 +6072,11 @@ human-signals@^2.1.0:
   version "2.1.0"
   resolved "https://registry.npmjs.org/human-signals/-/human-signals-2.1.0.tgz#dc91fcba42e4d06e4abaed33b3e7a3c02f514ea0"
   integrity sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==
+
+husky@^7.0.4:
+  version "7.0.4"
+  resolved "https://registry.yarnpkg.com/husky/-/husky-7.0.4.tgz#242048245dc49c8fb1bf0cc7cfb98dd722531535"
+  integrity sha512-vbaCKN2QLtP/vD4yvs6iz6hBEo6wkSzs8HpRah1Z6aGmF2KW5PdYuAd7uX5a+OyBZHBhd+TFLqgjUgytQr4RvQ==
 
 hyphenate-style-name@^1.0.3:
   version "1.0.4"
@@ -10311,9 +10333,16 @@ react-toastify@^6.1.0:
     prop-types "^15.7.2"
     react-transition-group "^4.4.1"
 
+react-toastify@^9.0.1:
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/react-toastify/-/react-toastify-9.0.1.tgz#2f3abd26a75efd55a82cb9c0a897c865218ea420"
+  integrity sha512-c2zeZHkCX+WXuItS/JRqQ/8CH8Qm/je+M0rt09xe9fnu5YPJigtNOdD8zX4fwLA093V2am3abkGfOowwpkrwOQ==
+  dependencies:
+    clsx "^1.1.1"
+
 react-transition-group@^4.3.0, react-transition-group@^4.4.1, react-transition-group@^4.4.2:
   version "4.4.2"
-  resolved "https://registry.npmjs.org/react-transition-group/-/react-transition-group-4.4.2.tgz#8b59a56f09ced7b55cbd53c36768b922890d5470"
+  resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-4.4.2.tgz#8b59a56f09ced7b55cbd53c36768b922890d5470"
   integrity sha512-/RNYfRAMlZwDSr6z4zNKV6xu53/e2BuaBbGhbyYIXTrmgu/bGHzmqOs7mJSJBHy9Ud+ApHx3QjrkKSp1pxvlFg==
   dependencies:
     "@babel/runtime" "^7.5.5"
