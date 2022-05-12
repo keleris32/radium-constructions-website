@@ -30,10 +30,10 @@ const Header: React.FC<Props> = ({ megaMenu, socialMedia }) => {
 
   return (
     <header className={classes.header}>
-      <Link href="/">
+      <Link href="/" scroll={false}>
         {
-          // eslint-disable-next-line react/jsx-max-props-per-line
-          <a href="/" className={classes.logo}>
+          // eslint-disable-next-line jsx-a11y/anchor-is-valid
+          <a className={classes.logo}>
             <Icon className={classes.icon} />
           </a>
         }
@@ -46,32 +46,39 @@ const Header: React.FC<Props> = ({ megaMenu, socialMedia }) => {
       >
         <Hamburger active={menuActive} />
       </button>
+
       <Modal slug={menuSlug} className={classes.menu}>
-        <GridContainer>
-          <Grid>
+        <GridContainer className={classes.gridContainer}>
+          <Grid className={classes.navLinks}>
             <Cell cols={8} htmlElement="nav">
               {megaMenu?.nav?.map(({ link }, i) => (
-                <CMSLink {...link} key={i} className={classes.primaryNavItem}>
-                  <h3 key={i} style={{ marginTop: i === 0 ? 0 : undefined }}>
+                <h3
+                  key={link.label}
+                  style={i === 0 ? { marginTop: 0 } : undefined}
+                >
+                  <CMSLink {...link} className={classes.primaryNavItem}>
                     {link.label}
-                  </h3>
-                </CMSLink>
+                  </CMSLink>
+                </h3>
               ))}
             </Cell>
-            <Cell cols={3}>
-              {socialMedia?.link?.map(({ url, label }) => (
-                <LargeBody key={url}>
-                  <a
-                    href={url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={classes.secondaryNavItem}
-                  >
-                    {label}
-                  </a>
-                </LargeBody>
-              ))}
-            </Cell>
+
+            {Array.isArray(socialMedia?.link) && socialMedia.link.length > 0 && (
+              <Cell cols={3}>
+                {socialMedia?.link?.map(({ url, label }) => (
+                  <LargeBody key={url}>
+                    <a
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={classes.secondaryNavItem}
+                    >
+                      {label}
+                    </a>
+                  </LargeBody>
+                ))}
+              </Cell>
+            )}
           </Grid>
         </GridContainer>
         <div className={classes.ctaWrap}>

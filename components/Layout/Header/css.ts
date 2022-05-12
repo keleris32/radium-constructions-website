@@ -25,12 +25,13 @@ export default createUseStyles({
 
   logo: {
     backgroundColor: colors.red,
-    padding: base(0.75),
+    padding: base(0.875),
+    pointerEvents: 'all',
   },
 
   icon: {
-    width: base(1.5),
-    height: base(1.5),
+    width: base(1.25),
+    height: base(1.25),
     display: 'block',
   },
 
@@ -79,6 +80,11 @@ export default createUseStyles({
       padding: `${headerHeight} ${base(1.5)} 0`,
     },
   },
+  gridContainer: {
+    [queries.s]: {
+      padding: 0,
+    },
+  },
 
   navLinks: {
     [queries.m]: {
@@ -102,10 +108,10 @@ export default createUseStyles({
   },
 
   secondaryNavItem: {
+    transition: `all ${transitions.default}ms linear`,
     color: 'white',
     textDecoration: 'none',
     '&:hover': {
-      transition: `all ${transitions.default}ms linear`,
       color: colors.blue,
     },
   },
