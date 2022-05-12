@@ -1,8 +1,9 @@
-import React from 'react';
 import { Block } from 'payload/types';
-// import RichText from '../../components/RichText';
-// import classes from './index.module.css';
-import { backgroundColor } from '../../fields';
+import backgroundColor, {
+  Type as BackgroundColorType,
+} from '../../fields/backgroundColor';
+import RedUnderline from '../../components/RichText/leaves/RedUnderline';
+import HR from '../../components/RichText/elements/HR';
 
 export type ColumnWidth = 'oneThird' | 'half' | 'twoThirds' | 'full';
 
@@ -26,6 +27,7 @@ export type Type = {
   accentLineAlignment: AccentLineAlignment;
   paddingTop: PaddingSize;
   paddingBottom: PaddingSize;
+  backgroundColor: BackgroundColorType;
 };
 
 export const Content: Block = {
@@ -35,33 +37,6 @@ export const Content: Block = {
     plural: 'Content Blocks',
   },
   fields: [
-    // {
-    //   name: 'backgroundColor',
-    //   label: 'Background Color',
-    //   type: 'radio',
-    //   defaultValue: 'none',
-    //   options: [
-    //     {
-    //       label: 'None',
-    //       value: 'none',
-    //     },
-    //     {
-    //       label: 'Red',
-    //       value: 'red',
-    //     },
-    //     {
-    //       label: 'Blue',
-    //       value: 'blue',
-    //     },
-    //     {
-    //       label: 'Orange',
-    //       value: 'orange',
-    //     },
-    //   ],
-    //   admin: {
-    //     layout: 'horizontal',
-    //   },
-    // },
     backgroundColor,
     {
       name: 'columns',
@@ -133,6 +108,10 @@ export const Content: Block = {
           name: 'content',
           type: 'richText',
           required: true,
+          admin: {
+            leaves: [RedUnderline],
+            elements: ['h2', 'h3', 'h4', 'h5', 'ul', 'ol', HR, 'link'],
+          },
         },
       ],
     },
@@ -158,7 +137,7 @@ export const Content: Block = {
         },
       ],
       admin: {
-        condition: (_, siblingData) => siblingData.accentLine,
+        condition: (_, siblingData) => Boolean(siblingData.accentLine),
         layout: 'horizontal',
       },
     },
@@ -171,6 +150,10 @@ export const Content: Block = {
           type: 'select',
           defaultValue: 'medium',
           options: [
+            {
+              label: 'None',
+              value: 'none',
+            },
             {
               label: 'Small',
               value: 'small',
@@ -195,6 +178,10 @@ export const Content: Block = {
           defaultValue: 'medium',
           options: [
             {
+              label: 'None',
+              value: 'none',
+            },
+            {
               label: 'Small',
               value: 'small',
             },
@@ -215,7 +202,5 @@ export const Content: Block = {
     },
   ],
 };
-
-export const Component: React.FC<Type> = () => <div>Content Placeholder</div>;
 
 export default Content;

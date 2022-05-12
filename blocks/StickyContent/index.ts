@@ -2,11 +2,12 @@ import { Block } from 'payload/types';
 
 export type Section = {
   label: string;
-  description: unknown;
+  description: string;
 };
 
 export type Type = {
   sections: Section[];
+  blockType: 'sticky-content';
 };
 
 const StickyContent: Block = {
