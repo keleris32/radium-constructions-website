@@ -1,20 +1,15 @@
 /* eslint-disable react/jsx-max-props-per-line */
 import React from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
-import { Cell, Grid } from '@faceless-ui/css-grid';
-import getConfig from 'next/config';
 import { Type as PageType } from '../collections/Page';
 import NotFound from '../components/NotFound';
 import Head from '../components/Head';
 import RenderBlocks from '../components/RenderBlocks';
-import GridContainer from '../components/layout/GridContainer';
 import Template from '../components/layout/Template';
+import useStyles from '../css/pages/[...slug]';
 import { Type as FooterType } from '../globals/Footer';
 import { Type as SocialMediaType } from '../globals/SocialMedia';
-
-const {
-  publicRuntimeConfig: { SERVER_URL },
-} = getConfig();
+import PageHero from '../components/layout/PageHero';
 
 export type Props = {
   page?: PageType;
@@ -25,38 +20,30 @@ export type Props = {
 
 const Page: React.FC<Props> = (props) => {
   const { page, footer, socialMedia } = props;
+  const classes = useStyles();
 
   if (!page) {
     return <NotFound />;
   }
 
   return (
-    <Template footer={footer} socialMedia={socialMedia}>
+    <Template
+      className={classes.page}
+      footer={footer}
+      socialMedia={socialMedia}
+    >
       <Head
         title={page.meta?.meta?.title || page.title}
         description={page.meta?.meta?.description}
         keywords={page.meta?.meta?.keywords}
       />
-      <header>
-        <h1>{page.title}</h1>
-      </header>
-      <div>
-        {page.image && (
-          <img
-            src={`${SERVER_URL}/media/${
-              page.image.sizes?.feature?.filename || page.image.filename
-            }`}
-            alt={page.image.alt}
-          />
-        )}
-      </div>
+      <PageHero
+        title={page.title}
+        type={page.heroType}
+        content={page.heroContent}
+        media={page.heroMedia}
+      />
       <RenderBlocks layout={page.layout} />
-      <GridContainer>
-        <Grid>
-          <Cell cols={6}>Here is some first column content</Cell>
-          <Cell cols={6}>Here is some content</Cell>
-        </Grid>
-      </GridContainer>
     </Template>
   );
 };
@@ -76,6 +63,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     props: {
       page: pageData.docs[0],
     },
+    revalidate: 1,
   };
 };
 
