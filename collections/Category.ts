@@ -8,6 +8,12 @@ export type Type = {
 
 const Category: CollectionConfig = {
   slug: 'categories',
+  admin: {
+    useAsTitle: 'title',
+  },
+  access: {
+    read: () => true,
+  },
   fields: [
     {
       name: 'title',
@@ -20,32 +26,3 @@ const Category: CollectionConfig = {
 };
 
 export default Category;
-
-// const Category: CollectionConfig = {
-//   slug: 'categories',
-//   fields: [
-//     {
-//       name: 'title',
-//       label: 'Title',
-//       type: 'text',
-//       required: true,
-//     },
-//     {
-//       name: 'client',
-//       label: 'Client',
-//       type: 'text',
-//       admin: {
-//         position: 'sidebar',
-//       },
-//     },
-//     {
-//       name: 'location',
-//       label: 'Location',
-//       type: 'text',
-//       admin: {
-//         position: 'sidebar',
-//       },
-//     },
-//     slug,
-//   ],
-// };

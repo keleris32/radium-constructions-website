@@ -1,25 +1,25 @@
 import { CollectionConfig } from 'payload/types';
-import { slug, meta } from '../fields';
-import { Type as MetaType } from '../fields/meta';
+import slug from '../fields/slug';
+import meta, { Type as MetaType } from '../fields/meta';
 import { Type as MediaType } from './Media';
 import { Type as CategoryType } from './Category';
 import { Content, Type as ContentType } from '../blocks/Content';
-import { Image, Type as ImageType } from '../blocks/Image';
+import { Media, Type as MediaBlockType } from '../blocks/Media';
 import Statistics, { Type as StatisticsType } from '../blocks/Statistics';
 import Spacer, { Type as SpacerType } from '../blocks/Spacer';
-import ImageContentCollage, {
-  Type as ImageContentCollageType,
-} from '../blocks/ImageContentCollage';
+import MediaContentCollage, {
+  Type as MediaContentCollageType,
+} from '../blocks/MediaContentCollage';
 import StickyContent, {
   Type as StickyContentType,
 } from '../blocks/StickyContent';
 import CallToAction, { Type as CallToActionType } from '../blocks/CallToAction';
 import Slider, { Type as SliderType } from '../blocks/Slider';
-import ImageStatCollage, {
-  Type as ImageStatCollageType,
-} from '../blocks/ImageStatCollage';
-import ImageGrid, { Type as ImageGridType } from '../blocks/ImageGrid';
-import ImageCollage, { Type as ImageCollageType } from '../blocks/ImageCollage';
+import MediaStatCollage, {
+  Type as MediaStatCollageType,
+} from '../blocks/MediaStatCollage';
+import MediaGrid, { Type as MediaGridType } from '../blocks/MediaGrid';
+import MediaCollage, { Type as MediaCollageType } from '../blocks/MediaCollage';
 import StudySlider, { Type as StudySliderType } from '../blocks/StudySlider';
 import CTAGrid, { Type as CTAGridType } from '../blocks/CTAGrid';
 
@@ -27,11 +27,11 @@ export type Layout =
   | CallToActionType
   | ContentType
   | CTAGridType
-  | ImageType
-  | ImageCollageType
-  | ImageContentCollageType
-  | ImageGridType
-  | ImageStatCollageType
+  | MediaBlockType
+  | MediaCollageType
+  | MediaContentCollageType
+  | MediaGridType
+  | MediaStatCollageType
   | SliderType
   | SpacerType
   | StatisticsType
@@ -40,10 +40,11 @@ export type Layout =
 
 export type Type = {
   title: string;
-  featuredImage: MediaType;
-  previewImages: {
-    image: MediaType;
+  featuredMedia: MediaType;
+  previewMedia: {
+    media: MediaType;
   }[];
+  layout: Layout[];
   client?: string;
   location?: string;
   categories?: CategoryType[];
@@ -53,6 +54,12 @@ export type Type = {
 
 const Study: CollectionConfig = {
   slug: 'studies',
+  admin: {
+    useAsTitle: 'title',
+  },
+  access: {
+    read: (): boolean => true, // Everyone can read Pages
+  },
   fields: [
     {
       name: 'title',
@@ -61,8 +68,8 @@ const Study: CollectionConfig = {
       required: true,
     },
     {
-      name: 'featuredImage',
-      label: 'Featured Image',
+      name: 'featuredMedia',
+      label: 'Featured Media',
       type: 'upload',
       relationTo: 'media',
       required: true,
@@ -75,11 +82,11 @@ const Study: CollectionConfig = {
         CallToAction,
         Content,
         CTAGrid,
-        Image,
-        ImageCollage,
-        ImageContentCollage,
-        ImageGrid,
-        ImageStatCollage,
+        Media,
+        MediaCollage,
+        MediaContentCollage,
+        MediaGrid,
+        MediaStatCollage,
         Slider,
         Spacer,
         Statistics,
@@ -88,15 +95,19 @@ const Study: CollectionConfig = {
       ],
     },
     {
-      name: 'previewImages',
-      label: 'Preview Images',
+      name: 'previewMedia',
+      label: 'Preview Media',
+      labels: {
+        singular: 'Media',
+        plural: 'Media',
+      },
       type: 'array',
       minRows: 1,
       maxRows: 3,
       fields: [
         {
-          name: 'image',
-          label: 'Image',
+          name: 'media',
+          label: 'Media',
           type: 'upload',
           relationTo: 'media',
           required: true,

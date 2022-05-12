@@ -1,25 +1,25 @@
 /* eslint-disable operator-linebreak */
 import { CollectionConfig } from 'payload/types';
 import { Type as MediaType } from './Media';
-import { Image, Type as ImageType } from '../blocks/Image';
+import { Media, Type as MediaBlockType } from '../blocks/Media';
 import { Content, Type as ContentType } from '../blocks/Content';
 import { slug, meta } from '../fields';
 import { Type as MetaType } from '../fields/meta';
 import Statistics, { Type as StatisticsType } from '../blocks/Statistics';
 import Spacer, { Type as SpacerType } from '../blocks/Spacer';
-import ImageContentCollage, {
-  Type as ImageContentCollageType,
-} from '../blocks/ImageContentCollage';
+import MediaContentCollage, {
+  Type as MediaContentCollageType,
+} from '../blocks/MediaContentCollage';
 import StickyContent, {
   Type as StickyContentType,
 } from '../blocks/StickyContent';
 import CallToAction, { Type as CallToActionType } from '../blocks/CallToAction';
 import Slider, { Type as SliderType } from '../blocks/Slider';
-import ImageStatCollage, {
-  Type as ImageStatCollageType,
-} from '../blocks/ImageStatCollage';
-import ImageGrid, { Type as ImageGridType } from '../blocks/ImageGrid';
-import ImageCollage, { Type as ImageCollageType } from '../blocks/ImageCollage';
+import MediaStatCollage, {
+  Type as MediaStatCollageType,
+} from '../blocks/MediaStatCollage';
+import MediaGrid, { Type as MediaGridType } from '../blocks/MediaGrid';
+import MediaCollage, { Type as MediaCollageType } from '../blocks/MediaCollage';
 import StudySlider, { Type as StudySliderType } from '../blocks/StudySlider';
 import CTAGrid, { Type as CTAGridType } from '../blocks/CTAGrid';
 import RedHeadline from '../components/RichText/leaves/RedHeadline';
@@ -29,11 +29,11 @@ export type Layout =
   | CallToActionType
   | ContentType
   | CTAGridType
-  | ImageType
-  | ImageCollageType
-  | ImageContentCollageType
-  | ImageGridType
-  | ImageStatCollageType
+  | MediaBlockType
+  | MediaCollageType
+  | MediaContentCollageType
+  | MediaGridType
+  | MediaStatCollageType
   | SliderType
   | SpacerType
   | StatisticsType
@@ -44,7 +44,7 @@ export type Type = {
   title: string;
   heroType: 'minimal' | 'contentAboveImage' | 'contentLeftOfImage';
   heroContent: unknown;
-  heroImage?: MediaType;
+  heroMedia?: MediaType;
   slug: string;
   image?: MediaType;
   layout: Layout[];
@@ -78,12 +78,12 @@ export const Page: CollectionConfig = {
           value: 'minimal',
         },
         {
-          label: 'Content Above Image',
-          value: 'contentAboveImage',
+          label: 'Content Above Media',
+          value: 'contentAboveMedia',
         },
         {
-          label: 'Content Left of Image',
-          value: 'contentLeftOfImage',
+          label: 'Content Left of Media',
+          value: 'contentLeftOfMedia',
         },
       ],
     },
@@ -97,16 +97,16 @@ export const Page: CollectionConfig = {
       },
     },
     {
-      name: 'heroImage',
-      label: 'Hero Image',
+      name: 'heroMedia',
+      label: 'Hero Media',
       type: 'upload',
       relationTo: 'media',
       required: true,
       admin: {
         condition: (_, siblingData) =>
           // eslint-disable-next-line implicit-arrow-linebreak
-          siblingData?.heroType === 'contentAboveImage' ||
-          siblingData?.heroType === 'contentLeftOfImage',
+          siblingData?.heroType === 'contentAboveMedia' ||
+          siblingData?.heroType === 'contentLeftOfMedia',
       },
     },
     {
@@ -118,11 +118,11 @@ export const Page: CollectionConfig = {
         CallToAction,
         Content,
         CTAGrid,
-        Image,
-        ImageCollage,
-        ImageContentCollage,
-        ImageGrid,
-        ImageStatCollage,
+        Media,
+        MediaCollage,
+        MediaContentCollage,
+        MediaGrid,
+        MediaStatCollage,
         Slider,
         Spacer,
         Statistics,
